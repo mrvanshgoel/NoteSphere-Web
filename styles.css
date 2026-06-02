@@ -543,7 +543,14 @@ section {
 
 .feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
 
-/* ==================== GALLERY ==================== */
+/* ==================== GALLERY — CIRCULAR SCROLL CAROUSEL ==================== */
+
+@property --carousel-rotate {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
 .gallery {
     max-width: 100%;
     padding-left: 0;
@@ -555,70 +562,181 @@ section {
     margin-left: auto;
     margin-right: auto;
     padding: 0 2rem;
+    margin-bottom: 2rem;
 }
 
-.gallery-container {
-    width: 100%;
-    overflow: hidden;
-    padding: 1rem 0 2rem;
+/* ---- Scroll container: becomes the scroll timeline source ---- */
+.gallery-scroll-section {
+    overflow-y: scroll;
+    height: 92svh;
+    scrollbar-width: none;
     position: relative;
+    scroll-timeline-name: --gallery-scroll;
+    scroll-timeline-axis: block;
 }
 
-/* Fade edges */
-.gallery-container::before,
-.gallery-container::after {
-    content: '';
-    position: absolute;
+.gallery-scroll-section::-webkit-scrollbar {
+    display: none;
+}
+
+/* ---- Tall inner div provides scroll room for 8 cards ---- */
+.gallery-scroll-driver {
+    height: 920svh;
+    position: relative;
+    /* --carousel-rotate animates from 0 → 1 (full circle) via scroll */
+    --carousel-rotate: 0;
+    --cards: 8;
+    animation: carousel-rotate-anim 1s steps(8) linear both;
+    animation-timeline: --gallery-scroll;
+}
+
+@keyframes carousel-rotate-anim {
+    to { --carousel-rotate: 1; }
+}
+
+/* ---- Sticky container holds the visible carousel in place ---- */
+.carousel-sticky {
+    position: sticky;
     top: 0;
-    bottom: 0;
-    width: 80px;
-    z-index: 2;
+    height: 92svh;
+    overflow: hidden;
+}
+
+/* ---- The circular wheel of cards ---- */
+.carousel-wheel {
+    --card-border-radius: 18px;
+    --card-width: max(130px, 15vw);
+    --card-height: calc(var(--card-width) * 6 / 4);
+    --radius: calc(var(--card-width) * var(--cards) / (2 * 3.1416));
+
+    font-family: var(--font-heading);
+    list-style: none;
+
+    position: absolute;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+
+    /* push wheel down so the top card is centered on screen */
+    top: calc(50% + var(--radius) + var(--card-height) * 2);
+    left: 50%;
+
+    transform-origin: center center;
+    transform: translateX(-50%) rotate(calc(var(--carousel-rotate) * 360deg));
+}
+
+/* ---- Individual cards, positioned via CSS Motion Path ---- */
+.carousel-wheel > div {
+    /* position on circle */
+    --card-offset-distance: calc((var(--card-i) - 1) / var(--cards) * 100%);
+    offset-path: circle(var(--radius) at 50% 50%);
+    offset-distance: var(--card-offset-distance);
+    offset-rotate: auto;
+    offset-anchor: 50% 100%;
+
+    /* how far is this card from the "top" (front) position? */
+    --card-phase: calc((var(--card-i) - 1) / var(--cards) - 0.75);
+    --card-pos: mod(calc(var(--card-phase) + var(--carousel-rotate) + 1), 1);
+    --card-dist: min(var(--card-pos), calc(1 - var(--card-pos)));
+
+    /* visual state based on distance from front */
+    --card-grayscale: clamp(0, calc(var(--card-dist) * var(--cards)), 1);
+    --card-opacity: calc(1 - (var(--card-dist) / 0.15));
+
+    --card-focus-range: 0.1;
+    --card-max-blur: 7px;
+    --card-norm-dist: min(var(--card-dist), var(--card-focus-range));
+    --card-blur: calc((var(--card-norm-dist) / var(--card-focus-range)) * var(--card-max-blur));
+
+    /* caption: only visible on the front card */
+    --caption-active: clamp(0, 1 - (var(--card-dist) / 0.001), 1);
+    --caption-y: calc(-160px * (1 - var(--caption-active)));
+
+    filter: blur(var(--card-blur)) grayscale(var(--card-grayscale));
+    opacity: var(--card-opacity);
+
+    position: absolute;
+    width: var(--card-width);
+    aspect-ratio: 4/6;
+    border-radius: var(--card-border-radius);
+    transition: filter 350ms ease-in-out, opacity 350ms ease-in-out;
+    transform-origin: center calc(var(--card-height) * 2 * -1);
+}
+
+/* ---- Caption label shown for the active (front) card ---- */
+.carousel-wheel > div::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 1rem;
+    opacity: var(--caption-active);
+    translate: 0 var(--caption-y);
+    font-size: clamp(0.9rem, 1.4vw + 0.2rem, 1.3rem);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--ns-purple-bright);
+    text-shadow: 0 0 20px var(--ns-purple-glow);
+    z-index: 10;
+    white-space: nowrap;
+    transition: opacity 350ms ease-in-out, translate 350ms ease-in-out;
     pointer-events: none;
 }
 
-.gallery-container::before {
-    left: 0;
-    background: linear-gradient(to right, var(--bg-dark), transparent);
+/* ---- Card image ---- */
+.carousel-wheel > div > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.07);
+    display: block;
 }
 
-.gallery-container::after {
-    right: 0;
-    background: linear-gradient(to left, var(--bg-dark), transparent);
-}
-
-.gallery-scroll {
+/* ---- Scroll hint icon at bottom of the carousel area ---- */
+.carousel-scroll-icon {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    translate: -50% 0;
     display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 1rem 5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--ns-purple) transparent;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    z-index: 10;
+    pointer-events: none;
+    animation: carousel-icon-fade 1s linear forwards;
+    animation-timeline: --gallery-scroll;
 }
 
-.gallery-scroll::-webkit-scrollbar { height: 4px; }
-.gallery-scroll::-webkit-scrollbar-track { background: transparent; }
-.gallery-scroll::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, var(--ns-purple), var(--ns-purple-light));
-    border-radius: var(--radius-full);
+@keyframes carousel-icon-fade {
+    0%   { opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-.gallery-img {
-    height: 480px;
-    width: auto;
-    border-radius: 24px;
-    scroll-snap-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-    flex-shrink: 0;
-}
-
-.gallery-img:hover {
-    transform: scale(1.03) translateY(-8px);
-    border-color: rgba(124, 58, 237, 0.4);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(124, 58, 237, 0.2);
+/* Fallback: hide icon if scroll timelines not supported */
+@supports not (animation-timeline: scroll()) {
+    .carousel-scroll-icon { display: none; }
+    .gallery-scroll-section {
+        height: auto;
+        overflow-y: visible;
+    }
+    .gallery-scroll-driver {
+        height: auto;
+    }
+    .carousel-sticky {
+        position: relative;
+        height: 70svh;
+        overflow: hidden;
+    }
 }
 
 /* ==================== ARCHITECTURE ==================== */

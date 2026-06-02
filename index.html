@@ -126,18 +126,34 @@
         <div class="section-header fade-in">
             <div class="section-label">App Interface</div>
             <h2>See It In Action</h2>
-            <p>Take a peek inside the NoteSphere ecosystem.</p>
+            <p>Scroll through the carousel to explore every screen.</p>
         </div>
-        <div class="gallery-container fade-in delay-1">
-            <div class="gallery-scroll">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-58-34-683_com.notesphere.app.jpg" alt="NoteSphere Login Screen" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-30-966_com.notesphere.app.jpg" alt="NoteSphere Home" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-45-048_com.notesphere.app.jpg" alt="NoteSphere Subjects" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-58-034_com.notesphere.app.jpg" alt="NoteSphere Folders" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-00-49-766_com.notesphere.app.jpg" alt="NoteSphere AI Chat" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-03-688_com.notesphere.app.jpg" alt="NoteSphere Flashcards" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-47-916_com.notesphere.app.jpg" alt="NoteSphere Notes" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-02-59-647_com.notesphere.app.jpg" alt="NoteSphere Profile" class="gallery-img">
+        <!-- Scroll-driven circular carousel -->
+        <div class="gallery-scroll-section">
+            <div class="gallery-scroll-driver">
+                <div class="carousel-sticky">
+                    <section class="carousel-wheel">
+                        <div data-title="Login Screen" style="--card-i:1"><img src="assets/screenshots/Screenshot_2026-06-01-23-58-34-683_com.notesphere.app.jpg" alt="Login Screen"></div>
+                        <div data-title="Home Dashboard" style="--card-i:2"><img src="assets/screenshots/Screenshot_2026-06-01-23-59-30-966_com.notesphere.app.jpg" alt="Home"></div>
+                        <div data-title="Subject Hub" style="--card-i:3"><img src="assets/screenshots/Screenshot_2026-06-01-23-59-45-048_com.notesphere.app.jpg" alt="Subjects"></div>
+                        <div data-title="Folder Explorer" style="--card-i:4"><img src="assets/screenshots/Screenshot_2026-06-01-23-59-58-034_com.notesphere.app.jpg" alt="Folders"></div>
+                        <div data-title="AI Tutor Chat" style="--card-i:5"><img src="assets/screenshots/Screenshot_2026-06-02-00-00-49-766_com.notesphere.app.jpg" alt="AI Chat"></div>
+                        <div data-title="Smart Flashcards" style="--card-i:6"><img src="assets/screenshots/Screenshot_2026-06-02-00-01-03-688_com.notesphere.app.jpg" alt="Flashcards"></div>
+                        <div data-title="Markdown Notes" style="--card-i:7"><img src="assets/screenshots/Screenshot_2026-06-02-00-01-47-916_com.notesphere.app.jpg" alt="Notes"></div>
+                        <div data-title="User Profile" style="--card-i:8"><img src="assets/screenshots/Screenshot_2026-06-02-00-02-59-647_com.notesphere.app.jpg" alt="Profile"></div>
+                    </section>
+                </div>
+            </div>
+            <div class="carousel-scroll-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z"/>
+                    <path d="M12 7l0 4"/>
+                    <path d="M8 26l4 4l4 -4">
+                        <animateTransform attributeType="XML" attributeName="transform" type="translate" values="0 0; 0 4; 0 0" dur="1s" repeatCount="indefinite"/>
+                    </path>
+                </svg>
+                <span>Scroll to spin</span>
             </div>
         </div>
     </section>
