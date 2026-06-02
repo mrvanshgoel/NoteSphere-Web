@@ -46,4 +46,34 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.boxShadow = 'none';
         }
     });
+
+    // API Status Checker
+    const statusDot = document.getElementById('api-status-dot');
+    const statusText = document.getElementById('api-status-text');
+    
+    async function checkApiStatus() {
+        try {
+            const response = await fetch('https://notesphere-cr9w.onrender.com/health');
+            if (response.ok) {
+                const data = await response.json();
+                if (data.status === 'ok') {
+                    statusText.textContent = 'API Online - Systems Normal';
+                    // Dot remains green from CSS
+                } else {
+                    throw new Error('API reported non-ok status');
+                }
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            statusText.textContent = 'API Offline - Investigating';
+            statusDot.style.backgroundColor = 'var(--warning)';
+            statusDot.style.boxShadow = '0 0 10px var(--warning)';
+            statusDot.style.animation = 'none'; // stop pulsing or change pulse color
+        }
+    }
+
+    checkApiStatus();
+    // Re-check every 60 seconds
+    setInterval(checkApiStatus, 60000);
 });
