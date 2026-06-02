@@ -15,12 +15,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Atmospheric Background -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
+    <div id="cursor-glow"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
                 <img src="assets/NoteSphere%20Logo%20Transparent.svg" alt="NoteSphere Logo" class="logo-icon-img">
@@ -40,15 +42,16 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-container">
             <div class="hero-content fade-in">
-                <a href="#" id="uptime-link" target="_blank" class="status-badge" style="text-decoration: none; transition: transform 0.2s ease;">
+                <a href="#" id="uptime-link" target="_blank" class="status-badge" style="text-decoration:none">
                     <span class="pulse-dot" id="api-status-dot"></span>
                     <span id="api-status-text">Checking API Status...</span>
                 </a>
                 <h1 class="hero-title">Your Intelligent <span class="highlight">Study OS</span></h1>
                 <p class="hero-subtitle">
-                    Unify your notes, flashcards, and PDFs with advanced Generative AI. 
+                    Unify your notes, flashcards, and PDFs with advanced Generative AI.
                     Say goodbye to fragmented tools and hello to seamless studying.
                 </p>
                 <div class="hero-cta">
@@ -62,6 +65,8 @@
             </div>
             <div class="hero-visual fade-in delay-1">
                 <div class="phone-mockup">
+                    <div class="phone-mockup-ring"></div>
+                    <div class="phone-mockup-ring-2"></div>
                     <div class="phone-notch"></div>
                     <img src="assets/app_screenshot.png.jpg" alt="NoteSphere App Screenshot" class="hero-image">
                 </div>
@@ -70,13 +75,16 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header fade-in">
+            <div class="section-label">Core Features</div>
             <h2>The Future of Studying</h2>
-            <p>Everything you need, supercharged by AI.</p>
+            <p>Everything you need, supercharged by AI — in one seamless experience.</p>
         </div>
-        
+
         <div class="features-grid">
             <div class="feature-card fade-in">
                 <div class="feature-icon">🧠</div>
@@ -100,7 +108,7 @@
             </div>
             <div class="feature-card fade-in delay-1">
                 <div class="feature-icon">🃏</div>
-                <h3>Auto Flashcards & Quizzes</h3>
+                <h3>Auto Flashcards &amp; Quizzes</h3>
                 <p>Generate study aids automatically from your text-based PDFs and images. Test your knowledge effortlessly.</p>
             </div>
             <div class="feature-card fade-in delay-2">
@@ -111,37 +119,43 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="section-header fade-in">
-            <h2>App Interface</h2>
+            <div class="section-label">App Interface</div>
+            <h2>See It In Action</h2>
             <p>Take a peek inside the NoteSphere ecosystem.</p>
         </div>
         <div class="gallery-container fade-in delay-1">
             <div class="gallery-scroll">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-58-34-683_com.notesphere.app.jpg" alt="Screenshot 1" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-30-966_com.notesphere.app.jpg" alt="Screenshot 2" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-45-048_com.notesphere.app.jpg" alt="Screenshot 3" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-58-034_com.notesphere.app.jpg" alt="Screenshot 4" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-00-49-766_com.notesphere.app.jpg" alt="Screenshot 5" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-03-688_com.notesphere.app.jpg" alt="Screenshot 6" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-47-916_com.notesphere.app.jpg" alt="Screenshot 7" class="gallery-img">
-                <img src="assets/screenshots/Screenshot_2026-06-02-00-02-59-647_com.notesphere.app.jpg" alt="Screenshot 8" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-01-23-58-34-683_com.notesphere.app.jpg" alt="NoteSphere Login Screen" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-30-966_com.notesphere.app.jpg" alt="NoteSphere Home" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-45-048_com.notesphere.app.jpg" alt="NoteSphere Subjects" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-01-23-59-58-034_com.notesphere.app.jpg" alt="NoteSphere Folders" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-02-00-00-49-766_com.notesphere.app.jpg" alt="NoteSphere AI Chat" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-03-688_com.notesphere.app.jpg" alt="NoteSphere Flashcards" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-02-00-01-47-916_com.notesphere.app.jpg" alt="NoteSphere Notes" class="gallery-img">
+                <img src="assets/screenshots/Screenshot_2026-06-02-00-02-59-647_com.notesphere.app.jpg" alt="NoteSphere Profile" class="gallery-img">
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Architecture Section -->
     <section class="architecture" id="architecture">
         <div class="architecture-container">
             <div class="architecture-content fade-in">
+                <div class="section-label">Tech Stack</div>
                 <h2>Under the Hood</h2>
                 <p>NoteSphere is built on a modern, robust Client-Server architecture utilizing the latest technologies.</p>
-                
+
                 <ul class="tech-list">
                     <li>
                         <span class="tech-badge">Android Java</span>
-                        <span>Native Client with Material Design Components.</span>
+                        <span>Native client with Material Design Components.</span>
                     </li>
                     <li>
                         <span class="tech-badge">Node.js + Express</span>
@@ -149,7 +163,7 @@
                     </li>
                     <li>
                         <span class="tech-badge">Firebase</span>
-                        <span>Authentication & Firestore NoSQL Database.</span>
+                        <span>Authentication &amp; Firestore NoSQL Database.</span>
                     </li>
                     <li>
                         <span class="tech-badge">Google Gemini</span>
@@ -172,9 +186,12 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Roadmap & Status Section -->
     <section class="roadmap" id="roadmap">
         <div class="section-header fade-in">
+            <div class="section-label">Development</div>
             <h2>Development Status</h2>
             <p>Transparency is key. Here's where we are and where we're going.</p>
         </div>
@@ -185,10 +202,10 @@
                     <h3>✅ Current Status</h3>
                 </div>
                 <ul class="status-list">
-                    <li>Secure Auth & Profile Bootstrapping</li>
+                    <li>Secure Auth &amp; Profile Bootstrapping</li>
                     <li>File upload and AI extraction (Ephemeral Storage)</li>
                     <li>AI Chat with context attachment</li>
-                    <li>Flashcard & Quiz Generators</li>
+                    <li>Flashcard &amp; Quiz Generators</li>
                     <li>Context Menus (Rename/Delete/Share)</li>
                 </ul>
             </div>
@@ -198,7 +215,7 @@
                     <h3>🚧 Challenges Overcome</h3>
                 </div>
                 <ul class="status-list">
-                    <li>Resolved AI API rate limits by implementing fallback chaining (Gemini 3.1 Pro -> 2.5 Flash)</li>
+                    <li>Resolved AI API rate limits via fallback chaining (Gemini 3.1 Pro → 2.5 Flash)</li>
                     <li>Fixed deeply nested NoSQL synchronization issues</li>
                     <li>Resolved runtime theme resolution failures</li>
                 </ul>
@@ -217,6 +234,8 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Developer Section -->
     <section class="developer" id="developer">
         <div class="developer-container fade-in">
@@ -226,8 +245,8 @@
             <div class="dev-info">
                 <h2>Designed and engineered by <span class="highlight">Vansh Goel</span></h2>
                 <p>
-                    <strong>Academic:</strong> BCA (Hons. with Research) in Multimedia & Animation, Galgotias University.<br>
-                    <strong>Profile:</strong> Technical architect, creative enthusiast, and freelance UI/UX & Graphic Designer.
+                    <strong>Academic:</strong> BCA (Hons. with Research) in Multimedia &amp; Animation, Galgotias University.<br>
+                    <strong>Profile:</strong> Technical architect, creative enthusiast, and freelance UI/UX &amp; Graphic Designer.
                 </p>
                 <div class="dev-links">
                     <a href="https://github.com/mrvanshgoel" target="_blank" class="btn btn-secondary nav-btn">GitHub Profile</a>
@@ -241,7 +260,7 @@
         <div class="feedback-container fade-in">
             <div class="feedback-content">
                 <h2>We Need Your Feedback!</h2>
-                <p>Found a bug, have a feature request, or just want to say hi? Let's shape the future of NoteSphere together.</p>
+                <p>Found a bug, have a feature request, or just want to say hi?<br>Let's shape the future of NoteSphere together.</p>
                 <div class="discord-contact">
                     <a href="https://discord.com/app" target="_blank" class="btn btn-primary btn-large discord-btn">
                         Message @mevansh on Discord
