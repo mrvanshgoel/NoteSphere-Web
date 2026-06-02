@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteSphere - Your Intelligent Study OS</title>
+    <meta name="description" content="NoteSphere is an intelligent Study OS unifying note-taking and material organization with advanced Generative AI capabilities. Download the Beta APK now.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">NS</span>
+                <span class="logo-text">NoteSphere</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="https://github.com/mrvanshgoel/NoteSphere/" target="_blank" class="github-link">GitHub</a>
+            </div>
+            <a href="https://github.com/mrvanshgoel/NoteSphere/releases/download/v0.1.0-beta.1/app-debug.apk" class="btn btn-primary nav-btn">Get Beta APK</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    Live Beta - Active Development
+                </div>
+                <h1 class="hero-title">Your Intelligent <span class="highlight">Study OS</span></h1>
+                <p class="hero-subtitle">
+                    Unify your notes, flashcards, and PDFs with advanced Generative AI. 
+                    Say goodbye to fragmented tools and hello to seamless studying.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://github.com/mrvanshgoel/NoteSphere/releases/download/v0.1.0-beta.1/app-debug.apk" class="btn btn-primary btn-large" id="download">
+                        Download Beta APK
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-large">
+                        Explore Features
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in delay-1">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <img src="assets/app_screenshot.png" alt="NoteSphere App Screenshot" class="hero-image">
+                </div>
+                <div class="glow-effect"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header fade-in">
+            <h2>The Future of Studying</h2>
+            <p>Everything you need, supercharged by AI.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🧠</div>
+                <h3>Smart AI Extraction</h3>
+                <p>Upload PDFs or images and instantly generate summaries, flashcards, and quizzes using Google Gemini AI.</p>
+            </div>
+            <div class="feature-card fade-in delay-1">
+                <div class="feature-icon">📁</div>
+                <h3>Infinite Nesting</h3>
+                <p>Organize your materials perfectly with an infinite nested folder explorer. No more messy file systems.</p>
+            </div>
+            <div class="feature-card fade-in delay-2">
+                <div class="feature-icon">💬</div>
+                <h3>Intelligent AI Tutor</h3>
+                <p>Chat directly with your materials. Ask questions and get context-aware answers instantly.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📝</div>
+                <h3>Markdown Notes</h3>
+                <p>Take beautiful notes with full markdown support right alongside your study materials.</p>
+            </div>
+            <div class="feature-card fade-in delay-1">
+                <div class="feature-icon">🃏</div>
+                <h3>Auto Flashcards & Quizzes</h3>
+                <p>Generate study aids automatically from your text-based PDFs and images. Test your knowledge effortlessly.</p>
+            </div>
+            <div class="feature-card fade-in delay-2">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Authentication</h3>
+                <p>Built on Firebase Auth, ensuring your data is safe and securely tied to your profile.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture" id="architecture">
+        <div class="architecture-container">
+            <div class="architecture-content fade-in">
+                <h2>Under the Hood</h2>
+                <p>NoteSphere is built on a modern, robust Client-Server architecture utilizing the latest technologies.</p>
+                
+                <ul class="tech-list">
+                    <li>
+                        <span class="tech-badge">Android Java</span>
+                        <span>Native Client with Material Design Components.</span>
+                    </li>
+                    <li>
+                        <span class="tech-badge">Node.js + Express</span>
+                        <span>Backend REST API hosted on Render.</span>
+                    </li>
+                    <li>
+                        <span class="tech-badge">Firebase</span>
+                        <span>Authentication & Firestore NoSQL Database.</span>
+                    </li>
+                    <li>
+                        <span class="tech-badge">Google Gemini</span>
+                        <span>Custom AI Router orchestrating multiple models.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="architecture-visual fade-in delay-1">
+                <div class="glass-panel arch-diagram">
+                    <div class="arch-node client">Android App</div>
+                    <div class="arch-arrow">↔</div>
+                    <div class="arch-node server">Node.js API</div>
+                    <div class="arch-arrow">↔</div>
+                    <div class="arch-col">
+                        <div class="arch-node db">Firebase</div>
+                        <div class="arch-node ai">Gemini AI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap & Status Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="section-header fade-in">
+            <h2>Development Status</h2>
+            <p>Transparency is key. Here's where we are and where we're going.</p>
+        </div>
+
+        <div class="roadmap-grid">
+            <div class="roadmap-card fade-in">
+                <div class="status-header success">
+                    <h3>✅ Current Status</h3>
+                </div>
+                <ul class="status-list">
+                    <li>Secure Auth & Profile Bootstrapping</li>
+                    <li>File upload and AI extraction (Ephemeral Storage)</li>
+                    <li>AI Chat with context attachment</li>
+                    <li>Flashcard & Quiz Generators</li>
+                    <li>Context Menus (Rename/Delete/Share)</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-card fade-in delay-1">
+                <div class="status-header warning">
+                    <h3>🚧 Challenges Overcome</h3>
+                </div>
+                <ul class="status-list">
+                    <li>Resolved AI API rate limits by implementing fallback chaining (Gemini 3.1 Pro -> 2.5 Flash)</li>
+                    <li>Fixed deeply nested NoSQL synchronization issues</li>
+                    <li>Resolved runtime theme resolution failures</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-card fade-in delay-2">
+                <div class="status-header info">
+                    <h3>🚀 Future Roadmap</h3>
+                </div>
+                <ul class="status-list">
+                    <li>Permanent cloud storage migration (AWS S3 / Firebase Blaze)</li>
+                    <li>Global search functionality</li>
+                    <li>Advanced AI pinning and chat history search</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-icon">NS</span>
+                <span class="logo-text">NoteSphere</span>
+            </div>
+            <p class="footer-desc">Your Intelligent Study OS. Built with passion to solve the student fragmentation problem.</p>
+            <div class="footer-links">
+                <a href="https://github.com/mrvanshgoel/NoteSphere/" target="_blank">GitHub Repository</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 NoteSphere Beta. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>
